@@ -52,11 +52,11 @@ Several testing users will be created on this step, as included in DbInitializer
 
             var users = new User[]
             {
-                new User { Name = "John Connor"},
-                new User { Name = "Elon Musk"},
-                new User { Name = "Juana Azurduy"},
-                new User { Name = "Woody Allen"},
-                new User { Name = "Isabel Allende"}
+                new User { Name = "John Connor"},   // UserId = 1
+                new User { Name = "Elon Musk"},     // UserId = 2
+                new User { Name = "Juana Azurduy"}, // UserId = 3
+                new User { Name = "Woody Allen"},   // UserId = 4
+                new User { Name = "Isabel Allende"} // UserId = 5
             };
 
             context.Users.AddRange(users);
