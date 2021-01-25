@@ -9,14 +9,14 @@
 
 ## Backend
 
-[Exchange.API Backend](https://github.com/alexis-dotnet/ExchangeAPI/tree/main/Exchange.API) contains all core components provided by NuGet packageds, so you don't need to include external references to it. Also, the lach settings have been included in this repository to allow the Angular client to run after clonning this repository without any changes.
+[Exchange.API Backend](https://github.com/alexis-dotnet/ExchangeAPI/tree/main/Exchange.API) contains all core components provided by NuGet packages, so you don't need to include external references to it. Also, the launch settings have been included in this repository to allow the Angular client to run after clonning it without any changes.
 
-You need to have the following prerequisites for this project to be able to run:
+You need to have the following prerequisites to be able to compile and run it:
 
 * SqlServer LocalDb
 * .NET 5
 
-This project is using SqlServer LocalDb as **(LocalDb)\\ssqllocaldb**, and Entity Framework Core is being used to access the databse. SQL Scripts to create the database have not been included because the project scans SqlServer LocalDb to look if the database exists, and if it doesn't exist it will create it based on the entities and mapping included in Program.cs.
+This project is using SqlServer LocalDb as **(LocalDb)\\msqllocaldb**, and Entity Framework Core is being used to access the databse. SQL Scripts to create the database have not been included because the project scans the SqlServer LocalDb instance to look if the database exists, and if it doesn't exist, the code will create it based on the entities and mapping included in Program.cs.
 
 ```
         private static void CreateDbIfNotExists(IHost host)
@@ -38,7 +38,7 @@ This project is using SqlServer LocalDb as **(LocalDb)\\ssqllocaldb**, and Entit
         }
 ```
 
-Log files will be stored in the folder Logs, which will be created in the same location where the  DLL files are stored (eventually, this folder will be **\Exchange.API\Exchange.API\bin\Debug\net5.0\Logs**).
+Log files will be stored in the folder Logs, which will be created in the same location where the  DLL files are stored (eventually, this folder will be **..\Exchange.API\Exchange.API\bin\Debug\net5.0\Logs**).
 
 You can change the limits for the current supported currencies by modifying those values in appsettings.json:
 
