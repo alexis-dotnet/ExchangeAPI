@@ -38,6 +38,33 @@ This project is using SqlServer LocalDb as **(LocalDb)\\msqllocaldb**, and Entit
         }
 ```
 
+Several testing users will be created on this step, as included in DbInitializer.csÑ
+
+```
+	public static class DbInitializer
+    {
+        public static void Initialize(MainContext context)
+        {
+            context.Database.EnsureCreated();
+
+            if (context.Users.Any())
+                return;
+
+            var users = new User[]
+            {
+                new User { Name = "John Connor"},
+                new User { Name = "Elon Musk"},
+                new User { Name = "Juana Azurduy"},
+                new User { Name = "Woody Allen"},
+                new User { Name = "Isabel Allende"}
+            };
+
+            context.Users.AddRange(users);
+            context.SaveChanges();
+        }
+    }
+```
+
 Log files will be stored in the folder Logs, which will be created in the same location where the  DLL files are stored (eventually, this folder will be **..\Exchange.API\Exchange.API\bin\Debug\net5.0\Logs**).
 
 You can change the limits for the current supported currencies by modifying those values in appsettings.json:
