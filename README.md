@@ -38,10 +38,10 @@ This project is using SqlServer LocalDb as **(LocalDb)\\msqllocaldb**, and Entit
         }
 ```
 
-Several testing users will be created on this step, as included in DbInitializer.csÑ
+Several testing users will be created on this step, as included in DbInitializer.cs:
 
 ```
-	public static class DbInitializer
+    public static class DbInitializer
     {
         public static void Initialize(MainContext context)
         {
