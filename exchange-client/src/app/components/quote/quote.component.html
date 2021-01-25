@@ -1,0 +1,28 @@
+<br/>
+<h3>Quotes</h3>
+<br/>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">ISO Code</th>
+    <th scope="col">Buy</th>
+    <th scope="col">Sell</th>
+    <th scope="col">At Date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <th scope="row">{{ rateResponseUsd.currency }}</th>
+    <td>{{ rateResponseUsd.buy == null ? '' : rateResponseUsd.buy }}</td>
+    <td>{{ rateResponseUsd.sell == null ? '' : rateResponseUsd.sell }}</td>
+    <td>{{ rateResponseUsd.rateDate == null ? '' : rateResponseUsd.rateDate.toLocaleString().replace("T", " ") }}</td>
+  </tr>
+  <tr>
+    <th scope="row">{{ rateResponseBrl.currency }}</th>
+    <td>{{ rateResponseBrl.buy == null ? '' : rateResponseBrl.buy }}</td>
+    <td>{{ rateResponseBrl.sell == null ? '' : rateResponseBrl.sell }}</td>
+    <td>{{ rateResponseBrl.rateDate == null ? '' : rateResponseBrl.rateDate.toLocaleString().replace("T", " ") }}</td>
+  </tr>
+  </tbody>
+</table>
+<button class="btn btn-primary" type="button" (click)="refresh()"><i class="fas fa-sync"></i>&nbsp; Refresh</button>

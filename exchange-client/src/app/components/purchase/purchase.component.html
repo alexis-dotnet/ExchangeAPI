@@ -1,0 +1,50 @@
+<br/>
+<h3>Purchase</h3>
+<br/>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">ISO Code</th>
+    <th scope="col">Buy</th>
+    <th scope="col">Sell</th>
+    <th scope="col">At Date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <th scope="row">{{ rateResponseUsd.currency }}</th>
+    <td>{{ rateResponseUsd.buy == null ? '' : rateResponseUsd.buy }}</td>
+    <td>{{ rateResponseUsd.sell == null ? '' : rateResponseUsd.sell }}</td>
+    <td>{{ rateResponseUsd.rateDate == null ? '' : rateResponseUsd.rateDate.toLocaleString().replace("T", " ") }}</td>
+  </tr>
+  <tr>
+    <th scope="row">{{ rateResponseBrl.currency }}</th>
+    <td>{{ rateResponseBrl.buy == null ? '' : rateResponseBrl.buy }}</td>
+    <td>{{ rateResponseBrl.sell == null ? '' : rateResponseBrl.sell }}</td>
+    <td>{{ rateResponseBrl.rateDate == null ? '' : rateResponseBrl.rateDate.toLocaleString().replace("T", " ") }}</td>
+  </tr>
+  </tbody>
+</table>
+
+<div class="col col-5">
+  <form>
+    <div class="form-group">
+      <label for="inputUserId">User Id</label>
+      <input type="number" class="form-control" id="inputUserId" placeholder="User Id" [formControl]="userIdControl">
+    </div>
+    <div class="form-group">
+      <label for="inputCurrency">Currency</label><br/>
+      <select class="form-select form-select-lg" aria-label="Select Currency" id="inputCurrency"
+              [formControl]="currencyControl">
+        <option value="USD" selected>US Dollar (USD)</option>
+        <option value="BRL">Brazilian Real (BRL)</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="inputAmount">Amount (ARS)</label>
+      <input type="number" class="form-control" id="inputAmount" placeholder="Amount" [formControl]="amountControl">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="submit()"><i class="fas fa-money-check-alt"></i>&nbsp; Submit
+    </button>
+  </form>
+</div>
