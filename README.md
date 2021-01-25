@@ -16,29 +16,7 @@ You need to have the following prerequisites to be able to compile and run it:
 * SqlServer LocalDb
 * .NET 5
 
-This project is using SqlServer LocalDb as **(LocalDb)\\msqllocaldb**, and Entity Framework Core is being used to access the databse. SQL Scripts to create the database have not been included because the project scans the SqlServer LocalDb instance to look if the database exists, and if it doesn't exist, the code will create it based on the entities and mapping included in Program.cs.
-
-```
-        private static void CreateDbIfNotExists(IHost host)
-        {
-            using (var scope = host.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
-                try
-                {
-                    var context = services.GetRequiredService<MainContext>();
-                    DbInitializer.Initialize(context);
-                }
-                catch (Exception ex)
-                {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred creating the DB.");
-                }
-            }
-        }
-```
-
-Several testing users will be created on this step, as included in DbInitializer.cs:
+This project is using SqlServer LocalDb as **(LocalDb)\\msqllocaldb**, and Entity Framework Core is being used to access the databse. SQL Scripts to create the database have not been included because the project scans the SqlServer LocalDb instance to look if the database exists, and if it doesn't exist, the code will create it based on the entities and mapping included in DbInitializer.cs. Also, several testing clients will be created on this step:
 
 ```
     public static class DbInitializer
@@ -63,6 +41,32 @@ Several testing users will be created on this step, as included in DbInitializer
             context.SaveChanges();
         }
     }
+```
+
+The structure of the tables in the database is according to the enitites defined in the project. Entity Framework Core will take care of creating the relationships defined in these classes:
+
+```
+    public class User
+    {
+        public int UserId { get; set; }
+        public string Name { get; set; }
+
+        public List<Purchase> Purchases { get; set; } = new();
+    }
+
+    public class Purchase
+    {
+        public int PurchaseId { get; set; }
+        public decimal OriginAmount { get; set; }
+        public string OriginCurrency { get; set; } = "ARS";
+        public decimal TargetAmount { get; set; }
+        public string TargetCurrency { get; set; }
+        public DateTime TransactionDate { get; set; } = DateTime.Now.ToUniversalTime();
+
+        public int UserId { get; set; }
+        public User User { get; set; }
+    }
+
 ```
 
 Log files will be stored in the folder Logs, which will be created in the same location where the  DLL files are stored (eventually, this folder will be **..\Exchange.API\Exchange.API\bin\Debug\net5.0\Logs**).
