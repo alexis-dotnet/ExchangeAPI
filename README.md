@@ -16,7 +16,7 @@ You need to have the following prerequisites to be able to compile and run it:
 * SqlServer LocalDb
 * .NET 5
 
-This project is using SqlServer LocalDb as **(LocalDb)\\msqllocaldb**, and Entity Framework Core is being used to access the databse. SQL Scripts to create the database have not been included because the project scans the SqlServer LocalDb instance to look if the database exists, and if it doesn't exist, the code will create it based on the entities and mapping included in DbInitializer.cs. Also, several testing clients will be created on this step:
+This project is using SqlServer LocalDb as **(LocalDb)\\msqllocaldb**, and Entity Framework Core is being used to access the databse. SQL Scripts to create the database have not been included because the project scans the SqlServer LocalDb instance at runtime to look for the database, and if it doesn't exist, the code will create it based on the entities and mappings included in DbInitializer.cs. Also, several testing clients will be created on this step:
 
 ```
     public static class DbInitializer
@@ -81,11 +81,11 @@ You can change the limits for the current supported currencies by modifying thos
   "SupportedCurrencies": [
     {
       "Currency": "USD",
-      "Limit": <pre><b>200</b></pre>
+      "Limit": 200
     },
     {
       "Currency": "BRL",
-      "Limit": <pre><b>300</b></pre>
+      "Limit": 300
     }
   ]
 ...
@@ -115,7 +115,7 @@ However, even when you can change the limits of the currencies, you can't add ot
 
 ### About passing UserId as a parameter when calling the endpoints
 
-Using the UserId as part of the reauest body is not so practical, because this is easy to automate. A beeter solution for this is create a token or session ID related to the UserID which will be much harder to automate because this will not depend on static values, but on the session assigned to the user when he/she has been logged into the system.
+Using the UserId as part of the request body is not so practical, because this is easy to automate. A better solution for this is to create a token or session ID related to the UserID which will be much harder to automate because this will not depend on static values, but on the session assigned to the user when he/she has been logged into the system.
 
 ## Frontend
 
